@@ -7,6 +7,8 @@ body {
 
 pre {
   font-family: 'Fira Code', sans-serif;
+  word-break: break-all;
+  white-space: break-spaces;
 }
 
 .container {
