@@ -1,19 +1,33 @@
+import * as $ from 'jquery';
+
 class Analytics {
   constructor() {
     this.counter = 0;
     this.destroyed = false;
+    this.isFnBind = false;
   }
 
   handleClick() {
-    this.counter += this.counter;
+    const fn = () => {
+      this.counter = ++this.counter;
+    };
+
+    if (this.isFnBind) {
+      return this.fn;
+    } else {
+      this.fn = fn;
+      this.isFnBind = true;
+
+      return fn;
+    }
   }
 
   init() {
-    document.body.addEventListener('click', this.handleClick);
+    $(document.body).on('click', this.handleClick());
   }
 
   destroy() {
-    document.body.removeEventListener('click', this.handleClick);
+    $(document.body).off('click', this.handleClick());
     this.destroyed = true;
   }
 
@@ -24,6 +38,5 @@ class Analytics {
 
 const analytics = new Analytics();
 analytics.init();
-console.log('lol');
 
 window['analytics'] = analytics;

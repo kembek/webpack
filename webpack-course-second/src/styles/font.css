@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), local('Roboto Regular'), url('../assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: local('Fira Code'), local('Fira Code Regular'), url('../assets/fonts/FiraCode-Regular.ttf') format('truetype');
+}
