@@ -1,5 +1,8 @@
+import './polyfill';
+
 import * as $ from 'jquery';
 import Post from '@models/Post';
+import babel from './babel';
 import '@/styles/main.css';
 import '@/styles/main.less';
 import '@/styles/main.scss';
