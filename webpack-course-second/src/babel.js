@@ -12,3 +12,7 @@ class Util {
 
 console.log('Util ', Util.id);
 console.log('Age: ', age);
+
+import('lodash').then((_) => {
+  console.log('RANDOM NUMBER => ', _.random(0, 45, true));
+});

@@ -5,9 +5,11 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
+const isStats = process.env.STATS === 'stats';
 
 const optimizationFactory = (isProdMode) => {
   const config = {
@@ -85,8 +87,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: getFilenamePattern(isProd, 'css')
-    })
-  ],
+    }),
+    isStats && new BundleAnalyzerPlugin()
+  ].filter(Boolean),
   module: {
     rules: [
       {

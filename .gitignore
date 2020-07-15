@@ -7,3 +7,4 @@ package-lock.json
 
 # Output files
 dist/
+bundle-analyze-stats.json
