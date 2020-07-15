@@ -46,9 +46,22 @@ const getStyleLoader = (isProdMode, styleLoader) => {
   return config;
 };
 
+const babelOptionsFactory = (preset) => {
+  const options = {
+    presets: ['@babel/preset-env'],
+    plugins: ['@babel/plugin-proposal-class-properties']
+  };
+
+  if (preset) {
+    options.presets.push(preset);
+  }
+
+  return options;
+};
+
 module.exports = {
   mode: 'development',
-  entry: { main: './src/index.js', analytics: './src/analytics.js' },
+  entry: { main: ['./src/polyfill.js', './src/index.js'], analytics: './src/analytics.ts', mainReact: './src/index.jsx' },
   output: {
     filename: getFilenamePattern(isProd),
     path: path.resolve(__dirname, 'dist')
@@ -80,7 +93,24 @@ module.exports = {
         test: /\.js$/i,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: babelOptionsFactory()
+        }
+      },
+      {
+        test: /\.ts$/i,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: babelOptionsFactory('@babel/preset-typescript')
+        }
+      },
+      {
+        test: /\.jsx$/i,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: babelOptionsFactory('@babel/preset-react')
         }
       },
       {

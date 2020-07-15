@@ -3,3 +3,9 @@ export async function fetchGreeting() {
 }
 
 fetchGreeting().then(console.log);
+
+class Util {
+  static id = Date.now();
+}
+
+console.log('Util ', Util.id);

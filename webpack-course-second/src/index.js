@@ -1,8 +1,6 @@
-import './polyfill';
-
 import * as $ from 'jquery';
 import Post from '@models/Post';
-import babel from './babel';
+import './babel';
 import '@/styles/main.css';
 import '@/styles/main.less';
 import '@/styles/main.scss';
@@ -14,7 +12,9 @@ import dataCsv from '@/assets/data.csv';
 
 const post = new Post('The great changes', new Date(), Logo);
 
-$('pre').html(post.toString());
+$(document).ready(() => {
+  $('pre').html(post.toString());
+});
 
 console.log('Post', post.toString());
 console.table('JSON: ', data);

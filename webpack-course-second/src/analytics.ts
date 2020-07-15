@@ -1,13 +1,12 @@
 import * as $ from 'jquery';
 
 class Analytics {
-  constructor() {
-    this.counter = 0;
-    this.destroyed = false;
-    this.isFnBind = false;
-  }
+  counter = 0;
+  destroyed = false;
+  isFnBind = false;
+  fn = null;
 
-  handleClick() {
+  handleClick(): () => void {
     const fn = () => {
       this.counter = ++this.counter;
     };
@@ -31,7 +30,7 @@ class Analytics {
     this.destroyed = true;
   }
 
-  getClicks() {
+  getClicks(): string | number {
     return this.destroyed ? `Analytics is destroyed. Total clicks = ${this.counter}` : this.counter;
   }
 }
