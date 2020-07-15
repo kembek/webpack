@@ -92,10 +92,13 @@ module.exports = {
       {
         test: /\.js$/i,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: babelOptionsFactory()
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: babelOptionsFactory()
+          },
+          isDev && 'eslint-loader'
+        ].filter(Boolean)
       },
       {
         test: /\.ts$/i,
@@ -145,5 +148,6 @@ module.exports = {
     open: {
       app: ['google-chrome', '--incognito']
     }
-  }
+  },
+  devtool: isDev && 'source-map'
 };
