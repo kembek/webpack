@@ -88,7 +88,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: getFilenamePattern(isProd, 'css')
     }),
-    isStats && new BundleAnalyzerPlugin()
+    isStats &&
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'json',
+        openAnalyzer: false,
+        generateStatsFile: true,
+        statsFilename: 'bundle-analyze-stats.json'
+      })
   ].filter(Boolean),
   module: {
     rules: [

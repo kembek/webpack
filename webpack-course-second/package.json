@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "stats": "cross-env STATS=stats webpack --json > bundle-analyze-stats.json"
+    "stats": "cross-env STATS=stats NODE_ENV=production webpack --mode production && webpack-bundle-analyzer dist/bundle-analyze-stats.json dist"
   },
   "repository": {
     "type": "git",
